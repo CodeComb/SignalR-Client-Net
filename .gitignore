@@ -30,6 +30,10 @@ src/*/wwwroot/lib/
 project.lock.json
 artifacts/
 
+# DOTNET
+.build/
+.testPublish/
+
 *_i.c
 *_p.c
 *_i.h
