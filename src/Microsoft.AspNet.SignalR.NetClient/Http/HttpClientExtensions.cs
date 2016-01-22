@@ -1,11 +1,12 @@
-﻿// Copyright (c) Microsoft Open Technologies, Inc. All rights reserved. See License.md in the project root for license information.
+﻿// Copyright (c) .NET Foundation. All rights reserved. 
+// Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information. 
 
 using System;
 using System.Threading.Tasks;
 
 namespace Microsoft.AspNet.SignalR.NetClient.Http
 {
-    public static class IHttpClientExtensions
+    public static class HttpClientExtensions
     {
         public static Task<IResponse> Post(this IHttpClient client, string url, Action<IRequest> prepareRequest, bool isLongRunning)
         {
