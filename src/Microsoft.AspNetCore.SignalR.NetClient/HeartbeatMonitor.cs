@@ -4,21 +4,13 @@
 using System;
 using System.Threading;
 
-#if NETFX_CORE
-using System.Diagnostics.CodeAnalysis;
-using Windows.System.Threading;
-#endif
-
 namespace Microsoft.AspNetCore.SignalR.NetClient
 {
     public class HeartbeatMonitor : IDisposable
     {
-#if !NETFX_CORE
         // Timer to determine when to notify the user and reconnect if required
         private Timer _timer;
-#else
-        private ThreadPoolTimer _timer;
-#endif
+
         // Used to ensure that the Beat only executes when the connection is in the Connected state
         private readonly object _connectionStateLock;
 
@@ -58,11 +50,7 @@ namespace Microsoft.AspNetCore.SignalR.NetClient
             _monitorKeepAlive = _connection.KeepAliveData != null && _connection.Transport.SupportsKeepAlive;
 
             ClearFlags();
-#if !NETFX_CORE
             _timer = new Timer(_ => Beat(), state: null, dueTime: _beatInterval, period: _beatInterval);
-#else
-            _timer = ThreadPoolTimer.CreatePeriodicTimer((timer) => Beat(), period: _beatInterval);
-#endif
         }
 
         private void ClearFlags()
@@ -74,9 +62,6 @@ namespace Microsoft.AspNetCore.SignalR.NetClient
         /// <summary>
         /// Callback function for the timer which determines if we need to notify the user or attempt to reconnect
         /// </summary>
-#if NETFX_CORE
-        [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "Timer is not implemented on WinRT")]
-#endif
         private void Beat()
         {
             TimeSpan timeElapsed = DateTime.UtcNow - _connection.LastMessageAt;
@@ -156,16 +141,10 @@ namespace Microsoft.AspNetCore.SignalR.NetClient
             {
                 if (_timer != null)
                 {
-#if !NETFX_CORE
 
                     _timer.Dispose();
                     _timer = null;
-#else
-                    _timer.Cancel();
-                    _timer = null;
-#endif
                 }
-
             }
         }
     }
