@@ -15,9 +15,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{D666303F-9E2
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{C5BA3410-B6DF-429A-BD32-5BB5438505F9}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Microsoft.AspNet.SignalR.NetClient", "src\Microsoft.AspNet.SignalR.NetClient\Microsoft.AspNet.SignalR.NetClient.xproj", "{44F78F00-A0F8-470A-8109-800B9F83499E}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Microsoft.AspNetCore.SignalR.NetClient", "src\Microsoft.AspNetCore.SignalR.NetClient\Microsoft.AspNetCore.SignalR.NetClient.xproj", "{44F78F00-A0F8-470A-8109-800B9F83499E}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Microsoft.AspNet.SignalR.NetClient.Tests", "test\Microsoft.AspNet.SignalR.NetClient.Tests\Microsoft.AspNet.SignalR.NetClient.Tests.xproj", "{C6EEBFB3-D09C-4542-8A9E-EFA9E0B25E2B}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Microsoft.AspNetCore.SignalR.NetClient.Tests", "test\Microsoft.AspNetCore.SignalR.NetClient.Tests\Microsoft.AspNetCore.SignalR.NetClient.Tests.xproj", "{C6EEBFB3-D09C-4542-8A9E-EFA9E0B25E2B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

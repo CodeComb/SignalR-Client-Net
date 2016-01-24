@@ -1,0 +1,42 @@
+﻿{
+  "version": "0.1.0-*",
+  "description": "Microsoft.AspNetCoreCore.SignalR.NetClient",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/AspNetCore/SignalR-Client-Net"
+  },
+  "dependencies": {
+    "Newtonsoft.Json": "8.0.2"
+  },
+  "compilationOptions": {
+    "warningsAsErrors": true,
+    "allowUnsafe": true,
+    "keyFile": "../../tools/Key.snk"
+  },
+  "frameworks": {
+    "net451": {
+      "frameworkAssemblies": {
+        "System.Net.Http": "4.0.0.0",
+        "System.Net.Http.WebRequest": "4.0.0.0"
+      }
+    },
+    "dotnet5.4": {
+      "dependencies": {
+        "System.Collections": "4.0.11-*",
+        "System.Diagnostics.Tools": "4.0.1-*",
+        "System.Diagnostics.TraceSource": "4.0.0-*",
+        "System.Linq": "4.0.1-*",
+        "System.IO": "4.0.11-*",
+        "System.Net.Http": "4.0.1-*",
+        "System.Net.Requests": "4.0.11-*",
+        "System.Net.WebSockets.Client": "4.0.0-*",
+        "System.Reflection": "4.1.0-*",
+        "System.Runtime": "4.0.21-*",
+        "System.Dynamic.Runtime": "4.0.11-*",
+        "System.Runtime.InteropServices": "4.0.21-*",
+        "System.Security.Cryptography.X509Certificates": "4.0.0-*",
+        "System.Threading.Timer": "4.0.1-*"
+      }
+    }
+  }
+}
