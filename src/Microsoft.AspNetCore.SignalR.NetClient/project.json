@@ -1,9 +1,9 @@
 ﻿{
   "version": "0.1.0-*",
-  "description": "Microsoft.AspNetCoreCore.SignalR.NetClient",
+  "description": "Microsoft.AspNetCore.SignalR.NetClient",
   "repository": {
     "type": "git",
-    "url": "git://github.com/AspNetCore/SignalR-Client-Net"
+    "url": "git://github.com/aspnet/SignalR-Client-Net"
   },
   "dependencies": {
     "Newtonsoft.Json": "8.0.2"
