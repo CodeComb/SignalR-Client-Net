@@ -1,0 +1,46 @@
+﻿// Copyright (c) .NET Foundation. All rights reserved.
+// Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
+
+using System.Diagnostics;
+
+namespace Microsoft.AspNetCore.SignalR.Client.Transports.WebSockets
+{
+    internal class ClientWebSocketHandler : WebSocketHandler
+    {
+        private readonly WebSocketTransport _webSocketTransport;
+
+        public ClientWebSocketHandler(WebSocketTransport webSocketTransport)
+            : base(maxIncomingMessageSize: null)
+        {
+            Debug.Assert(webSocketTransport != null, "webSocketTransport is null");
+
+            _webSocketTransport = webSocketTransport;
+        }
+
+        // for mocking
+        internal ClientWebSocketHandler()
+            : base(maxIncomingMessageSize: null)
+        {
+        }
+
+        public override void OnMessage(string message)
+        {
+            _webSocketTransport.OnMessage(message);
+        }
+
+        public override void OnOpen()
+        {
+            _webSocketTransport.OnOpen();
+        }
+
+        public override void OnClose()
+        {
+            _webSocketTransport.OnClose();
+        }
+
+        public override void OnError()
+        {
+            _webSocketTransport.OnError(Error);
+        }
+    }
+}
