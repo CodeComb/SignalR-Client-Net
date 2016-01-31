@@ -27,12 +27,12 @@ namespace Microsoft.AspNetCore.SignalR.Client
         {
             if (proxy == null)
             {
-                throw new ArgumentNullException("proxy");
+                throw new ArgumentNullException(nameof(proxy));
             }
 
-            if (String.IsNullOrEmpty(name))
+            if (string.IsNullOrEmpty(name))
             {
-                throw new ArgumentNullException("name");
+                throw new ArgumentNullException(nameof(name));
             }
 
             return Convert<T>(proxy[name], proxy.JsonSerializer);
@@ -49,17 +49,17 @@ namespace Microsoft.AspNetCore.SignalR.Client
         {
             if (proxy == null)
             {
-                throw new ArgumentNullException("proxy");
+                throw new ArgumentNullException(nameof(proxy));
             }
 
-            if (String.IsNullOrEmpty(eventName))
+            if (string.IsNullOrEmpty(eventName))
             {
-                throw new ArgumentNullException("eventName");
+                throw new ArgumentNullException(nameof(eventName));
             }
 
             if (onData == null)
             {
-                throw new ArgumentNullException("onData");
+                throw new ArgumentNullException(nameof(onData));
             }
 
             Subscription subscription = proxy.Subscribe(eventName);
@@ -85,17 +85,17 @@ namespace Microsoft.AspNetCore.SignalR.Client
         {
             if (proxy == null)
             {
-                throw new ArgumentNullException("proxy");
+                throw new ArgumentNullException(nameof(proxy));
             }
 
-            if (String.IsNullOrEmpty(eventName))
+            if (string.IsNullOrEmpty(eventName))
             {
-                throw new ArgumentNullException("eventName");
+                throw new ArgumentNullException(nameof(eventName));
             }
 
             if (onData == null)
             {
-                throw new ArgumentNullException("onData");
+                throw new ArgumentNullException(nameof(onData));
             }
 
             Subscription subscription = proxy.Subscribe(eventName);
@@ -122,17 +122,17 @@ namespace Microsoft.AspNetCore.SignalR.Client
         {
             if (proxy == null)
             {
-                throw new ArgumentNullException("proxy");
+                throw new ArgumentNullException(nameof(proxy));
             }
 
-            if (String.IsNullOrEmpty(eventName))
+            if (string.IsNullOrEmpty(eventName))
             {
-                throw new ArgumentNullException("eventName");
+                throw new ArgumentNullException(nameof(eventName));
             }
 
             if (onData == null)
             {
-                throw new ArgumentNullException("onData");
+                throw new ArgumentNullException(nameof(onData));
             }
 
             Subscription subscription = proxy.Subscribe(eventName);
@@ -162,17 +162,17 @@ namespace Microsoft.AspNetCore.SignalR.Client
         {
             if (proxy == null)
             {
-                throw new ArgumentNullException("proxy");
+                throw new ArgumentNullException(nameof(proxy));
             }
 
-            if (String.IsNullOrEmpty(eventName))
+            if (string.IsNullOrEmpty(eventName))
             {
-                throw new ArgumentNullException("eventName");
+                throw new ArgumentNullException(nameof(eventName));
             }
 
             if (onData == null)
             {
-                throw new ArgumentNullException("onData");
+                throw new ArgumentNullException(nameof(onData));
             }
 
             Subscription subscription = proxy.Subscribe(eventName);
@@ -203,17 +203,17 @@ namespace Microsoft.AspNetCore.SignalR.Client
         {
             if (proxy == null)
             {
-                throw new ArgumentNullException("proxy");
+                throw new ArgumentNullException(nameof(proxy));
             }
 
-            if (String.IsNullOrEmpty(eventName))
+            if (string.IsNullOrEmpty(eventName))
             {
-                throw new ArgumentNullException("eventName");
+                throw new ArgumentNullException(nameof(eventName));
             }
 
             if (onData == null)
             {
-                throw new ArgumentNullException("onData");
+                throw new ArgumentNullException(nameof(onData));
             }
 
             Subscription subscription = proxy.Subscribe(eventName);
@@ -257,17 +257,17 @@ namespace Microsoft.AspNetCore.SignalR.Client
         {
             if (proxy == null)
             {
-                throw new ArgumentNullException("proxy");
+                throw new ArgumentNullException(nameof(proxy));
             }
 
-            if (String.IsNullOrEmpty(eventName))
+            if (string.IsNullOrEmpty(eventName))
             {
-                throw new ArgumentNullException("eventName");
+                throw new ArgumentNullException(nameof(eventName));
             }
 
             if (onData == null)
             {
-                throw new ArgumentNullException("onData");
+                throw new ArgumentNullException(nameof(onData));
             }
 
             Subscription subscription = proxy.Subscribe(eventName);
@@ -300,17 +300,17 @@ namespace Microsoft.AspNetCore.SignalR.Client
         {
             if (proxy == null)
             {
-                throw new ArgumentNullException("proxy");
+                throw new ArgumentNullException(nameof(proxy));
             }
 
-            if (String.IsNullOrEmpty(eventName))
+            if (string.IsNullOrEmpty(eventName))
             {
-                throw new ArgumentNullException("eventName");
+                throw new ArgumentNullException(nameof(eventName));
             }
 
             if (onData == null)
             {
-                throw new ArgumentNullException("onData");
+                throw new ArgumentNullException(nameof(onData));
             }
 
             Subscription subscription = proxy.Subscribe(eventName);
@@ -344,17 +344,17 @@ namespace Microsoft.AspNetCore.SignalR.Client
         {
             if (proxy == null)
             {
-                throw new ArgumentNullException("proxy");
+                throw new ArgumentNullException(nameof(proxy));
             }
 
-            if (String.IsNullOrEmpty(eventName))
+            if (string.IsNullOrEmpty(eventName))
             {
-                throw new ArgumentNullException("eventName");
+                throw new ArgumentNullException(nameof(eventName));
             }
 
             if (onData == null)
             {
-                throw new ArgumentNullException("onData");
+                throw new ArgumentNullException(nameof(onData));
             }
 
             Subscription subscription = proxy.Subscribe(eventName);
@@ -388,12 +388,12 @@ namespace Microsoft.AspNetCore.SignalR.Client
         {
             if (proxy == null)
             {
-                throw new ArgumentNullException("proxy");
+                throw new ArgumentNullException(nameof(proxy));
             }
 
-            if (String.IsNullOrEmpty(eventName))
+            if (string.IsNullOrEmpty(eventName))
             {
-                throw new ArgumentNullException("eventName");
+                throw new ArgumentNullException(nameof(eventName));
             }
 
             return new Hubservable(proxy, eventName);
@@ -403,7 +403,7 @@ namespace Microsoft.AspNetCore.SignalR.Client
         {
             if (expectedArgs > actualArgs)
             {
-                throw new InvalidOperationException(String.Format(CultureInfo.CurrentCulture, Resources.Error_ClientCallbackInvalidNumberOfArguments,
+                throw new InvalidOperationException(string.Format(CultureInfo.CurrentCulture, Resources.Error_ClientCallbackInvalidNumberOfArguments,
                     eventName, actualArgs));
             }
 
@@ -413,7 +413,7 @@ namespace Microsoft.AspNetCore.SignalR.Client
             }
             catch (JsonReaderException ex)
             {
-                throw new InvalidOperationException(String.Format(CultureInfo.CurrentCulture, Resources.Error_ClientCallbackArgumentTypeMismatch, eventName, actualArgs, ex.Message));
+                throw new InvalidOperationException(string.Format(CultureInfo.CurrentCulture, Resources.Error_ClientCallbackArgumentTypeMismatch, eventName, actualArgs, ex.Message));
             }
         }
 

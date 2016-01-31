@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.SignalR.Client.Infrastructure;
 
 namespace Microsoft.AspNetCore.SignalR.Client
 {
-#if !PORTABLE
     public class ObservableConnection<T> : IObservable<T>
     {
         private readonly Connection _connection;
@@ -16,12 +15,12 @@ namespace Microsoft.AspNetCore.SignalR.Client
         {
             if (connection == null)
             {
-                throw new ArgumentNullException("connection");
+                throw new ArgumentNullException(nameof(connection));
             }
 
             if (convert == null)
             {
-                throw new ArgumentNullException("convert");
+                throw new ArgumentNullException(nameof(convert));
             }
 
             _convert = convert;
@@ -57,5 +56,4 @@ namespace Microsoft.AspNetCore.SignalR.Client
             });
         }
     }
-#endif
 }

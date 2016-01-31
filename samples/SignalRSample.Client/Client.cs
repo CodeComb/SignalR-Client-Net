@@ -1,4 +1,7 @@
-﻿using System;
+﻿// Copyright (c) .NET Foundation. All rights reserved.
+// Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
+
+using System;
 using System.IO;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.SignalR.Client;
@@ -22,7 +25,7 @@ namespace SignalRSample.Client
                 var hubConnection = new HubConnection(url);
                 var chatHubProxy = hubConnection.CreateHubProxy("ChatHub");
 
-                chatHubProxy.On<string>("send", message => _textWriter.Write($"Received server: '{message}'"));
+                chatHubProxy.On<string>("send", message => _textWriter.Write($"Received from server: '{message}'"));
 
                 await hubConnection.Start();
                 _textWriter.WriteLine($"Connected to server: {url}");

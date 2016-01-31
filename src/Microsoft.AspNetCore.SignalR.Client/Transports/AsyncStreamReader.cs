@@ -18,13 +18,7 @@ namespace Microsoft.AspNetCore.SignalR.Client.Transports
         private int _reading;
         private Action _setOpened;
 
-        protected object BufferLock
-        {
-            get
-            {
-                return _bufferLock;
-            }
-        }
+        protected object BufferLock => _bufferLock;
 
         /// <summary>
         /// Invoked when the stream is open.
@@ -50,13 +44,7 @@ namespace Microsoft.AspNetCore.SignalR.Client.Transports
             _stream = stream;
         }
 
-        private bool Processing
-        {
-            get
-            {
-                return _reading == State.Processing;
-            }
-        }
+        private bool Processing => _reading == State.Processing;
 
         /// <summary>
         /// Starts the reader.
@@ -178,10 +166,7 @@ namespace Microsoft.AspNetCore.SignalR.Client.Transports
             {
                 if (Closed != null)
                 {
-                    if (exception != null)
-                    {
-                        exception = exception.Unwrap();
-                    }
+                    exception = exception?.Unwrap();
 
                     Closed(exception);
                 }
@@ -196,18 +181,12 @@ namespace Microsoft.AspNetCore.SignalR.Client.Transports
 
         private void OnOpened()
         {
-            if (Opened != null)
-            {
-                Opened();
-            }
+            Opened?.Invoke();
         }
 
         private void OnData(ArraySegment<byte> buffer)
         {
-            if (Data != null)
-            {
-                Data(buffer);
-            }
+            Data?.Invoke(buffer);
         }
 
         private static class State

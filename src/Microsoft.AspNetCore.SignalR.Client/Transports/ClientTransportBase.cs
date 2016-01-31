@@ -17,7 +17,6 @@ namespace Microsoft.AspNetCore.SignalR.Client.Transports
     {
         private readonly IHttpClient _httpClient;
         private readonly string _transportName;
-        private readonly TransportHelper _transportHelper;
         private readonly TransportAbortHandler _abortHandler;
         private bool _finished = false;
 
@@ -33,12 +32,12 @@ namespace Microsoft.AspNetCore.SignalR.Client.Transports
         {
             if (httpClient == null)
             {
-                throw new ArgumentNullException("httpClient");
+                throw new ArgumentNullException(nameof(httpClient));
             }
 
             if (string.IsNullOrWhiteSpace(transportName))
             {
-                throw new ArgumentNullException("transportName");
+                throw new ArgumentNullException(nameof(transportName));
             }
 
             Debug.Assert(transportHelper != null, "transportHelper is null");
@@ -46,32 +45,20 @@ namespace Microsoft.AspNetCore.SignalR.Client.Transports
 
             _httpClient = httpClient;
             _transportName = transportName;
-            _transportHelper = transportHelper;
+            TransportHelper = transportHelper;
             _abortHandler = abortHandler;
         }
 
-        protected IHttpClient HttpClient
-        {
-            get { return _httpClient; }
-        }
+        protected IHttpClient HttpClient => _httpClient;
 
-        protected TransportHelper TransportHelper
-        {
-            get { return _transportHelper; }
-        }
+        protected TransportHelper TransportHelper { get; }
 
-        protected TransportAbortHandler AbortHandler
-        {
-            get { return _abortHandler; }
-        }
+        protected TransportAbortHandler AbortHandler => _abortHandler;
 
         /// <summary>
         /// Gets transport name.
         /// </summary>
-        public string Name
-        {
-            get { return _transportName; }
-        }
+        public string Name => _transportName;
 
         public abstract bool SupportsKeepAlive { get; }
 
@@ -89,7 +76,7 @@ namespace Microsoft.AspNetCore.SignalR.Client.Transports
         {
             if (connection == null)
             {
-                throw new ArgumentNullException("connection");
+                throw new ArgumentNullException(nameof(connection));
             }
 
             _initializationHandler = new TransportInitializationHandler(HttpClient, connection, connectionData, Name, disconnectToken, TransportHelper);
@@ -134,7 +121,7 @@ namespace Microsoft.AspNetCore.SignalR.Client.Transports
         {
             if (connection == null)
             {
-                throw new ArgumentNullException("connection");
+                throw new ArgumentNullException(nameof(connection));
             }
 
             if (_initializationHandler == null)
@@ -144,7 +131,7 @@ namespace Microsoft.AspNetCore.SignalR.Client.Transports
 
             connection.MarkLastMessage();
 
-            if (String.IsNullOrEmpty(response))
+            if (string.IsNullOrEmpty(response))
             {
                 return false;
             }

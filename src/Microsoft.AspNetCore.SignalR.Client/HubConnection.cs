@@ -108,10 +108,7 @@ namespace Microsoft.AspNetCore.SignalR.Client
                     }
                 }
 
-                if (callback != null)
-                {
-                    callback(result);
-                }
+                callback?.Invoke(result);
             }
             else if (message["I"] != null)
             {
@@ -130,10 +127,7 @@ namespace Microsoft.AspNetCore.SignalR.Client
                     }
                 }
 
-                if (callback != null)
-                {
-                    callback(result);
-                }
+                callback?.Invoke(result);
             }
             else
             {
@@ -181,7 +175,7 @@ namespace Microsoft.AspNetCore.SignalR.Client
         {
             if (State != ConnectionState.Disconnected)
             {
-                throw new InvalidOperationException(String.Format(CultureInfo.CurrentCulture, Resources.Error_ProxiesCannotBeAddedConnectionStarted));
+                throw new InvalidOperationException(string.Format(CultureInfo.CurrentCulture, Resources.Error_ProxiesCannotBeAddedConnectionStarted));
             }
 
             HubProxy hubProxy;

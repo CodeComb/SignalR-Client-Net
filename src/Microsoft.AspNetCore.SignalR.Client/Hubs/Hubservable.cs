@@ -11,7 +11,6 @@ namespace Microsoft.AspNetCore.SignalR.Client.Hubs
     /// <summary>
     /// <see cref="T:System.IObservable{object[]}"/> implementation of a hub event.
     /// </summary>
-
     public class Hubservable : IObservable<IList<JToken>>
     {
         private readonly string _eventName;

@@ -8,13 +8,13 @@ using Microsoft.AspNetCore.SignalR.Client.Transports;
 
 namespace Microsoft.AspNetCore.SignalR.Client.Http
 {
-    public static class IResponseExtensions
+    public static class ResponseExtensions
     {
         public static Task<string> ReadAsString(this IResponse response, Func<ArraySegment<byte>, bool> onChunk)
         {
             if (response == null)
             {
-                throw new ArgumentNullException("response");
+                throw new ArgumentNullException(nameof(response));
             }
 
             var stream = response.GetStream();

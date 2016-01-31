@@ -30,13 +30,7 @@ namespace Microsoft.AspNetCore.SignalR.Client.Transports
         /// <summary>
         /// Indicates whether or not the transport supports keep alive
         /// </summary>
-        public override bool SupportsKeepAlive
-        {
-            get
-            {
-                return true;
-            }
-        }
+        public override bool SupportsKeepAlive => true;
 
         /// <summary>
         /// The time to wait after a connection drops to try reconnecting.
@@ -53,10 +47,7 @@ namespace Microsoft.AspNetCore.SignalR.Client.Transports
             // if the transport failed to start we want to stop it silently.
             _stop = true;
 
-            if (_request != null)
-            {
-                _request.Abort();
-            }
+            _request?.Abort();
         }
 
         private void Reconnect(IConnection connection, string data, CancellationToken disconnectToken)
@@ -203,10 +194,7 @@ namespace Microsoft.AspNetCore.SignalR.Client.Transports
 
         public override void LostConnection(IConnection connection)
         {
-            if (_request != null)
-            {
-                _request.Abort();
-            }
+            _request?.Abort();
         }
     }
 }

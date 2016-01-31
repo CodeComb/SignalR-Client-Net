@@ -155,12 +155,12 @@ namespace Microsoft.AspNetCore.SignalR.Client
         {
             if (url == null)
             {
-                throw new ArgumentNullException("url");
+                throw new ArgumentNullException(nameof(url));
             }
 
             if (url.Contains("?"))
             {
-                throw new ArgumentException(String.Format(CultureInfo.CurrentCulture, Resources.Error_UrlCantContainQueryStringDirectly), "url");
+                throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.Error_UrlCantContainQueryStringDirectly), nameof(url));
             }
 
             if (!url.EndsWith("/", StringComparison.Ordinal))
@@ -546,11 +546,11 @@ namespace Microsoft.AspNetCore.SignalR.Client
         {
             Version version;
 
-            if (String.IsNullOrEmpty(versionString) ||
+            if (string.IsNullOrEmpty(versionString) ||
                 !TryParseVersion(versionString, out version) ||
                 version != Protocol)
             {
-                throw new InvalidOperationException(String.Format(CultureInfo.CurrentCulture,
+                throw new InvalidOperationException(string.Format(CultureInfo.CurrentCulture,
                                                                   Resources.Error_IncompatibleProtocolVersion,
                                                                   Protocol,
                                                                   versionString ?? "null"));
@@ -707,12 +707,12 @@ namespace Microsoft.AspNetCore.SignalR.Client
         {
             if (State == ConnectionState.Disconnected)
             {
-                throw new InvalidOperationException(String.Format(CultureInfo.CurrentCulture, Resources.Error_DataCannotBeSentConnectionDisconnected));
+                throw new InvalidOperationException(string.Format(CultureInfo.CurrentCulture, Resources.Error_DataCannotBeSentConnectionDisconnected));
             }
 
             if (State == ConnectionState.Connecting)
             {
-                throw new InvalidOperationException(String.Format(CultureInfo.CurrentCulture, Resources.Error_ConnectionHasNotBeenEstablished));
+                throw new InvalidOperationException(string.Format(CultureInfo.CurrentCulture, Resources.Error_ConnectionHasNotBeenEstablished));
             }
 
             return _transport.Send(this, data, _connectionData);
@@ -832,7 +832,7 @@ namespace Microsoft.AspNetCore.SignalR.Client
                     _disconnectTimeout,
                     () =>
                     {
-                        OnError(new TimeoutException(String.Format(CultureInfo.CurrentCulture,
+                        OnError(new TimeoutException(string.Format(CultureInfo.CurrentCulture,
                                 Resources.Error_ReconnectTimeout, _disconnectTimeout)));
                         Disconnect();
                     });
@@ -915,9 +915,9 @@ namespace Microsoft.AspNetCore.SignalR.Client
             }
 
 #if DOTNET5_4
-            return String.Format(CultureInfo.InvariantCulture, "{0}/{1} ({2})", client, _assemblyVersion, "Unknown OS");
+            return string.Format(CultureInfo.InvariantCulture, "{0}/{1} ({2})", client, _assemblyVersion, "Unknown OS");
 #else
-            return String.Format(CultureInfo.InvariantCulture, "{0}/{1} ({2})", client, _assemblyVersion, Environment.OSVersion);
+            return string.Format(CultureInfo.InvariantCulture, "{0}/{1} ({2})", client, _assemblyVersion, Environment.OSVersion);
 #endif
         }
 

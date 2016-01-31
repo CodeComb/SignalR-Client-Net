@@ -7,7 +7,7 @@ namespace Microsoft.AspNetCore.SignalR.Client
 {
     public class HeaderDictionary : IDictionary<string, string>
     {
-        private IDictionary<string, string> _dictionary = new Dictionary<string, string>();
+        private readonly IDictionary<string, string> _dictionary = new Dictionary<string, string>();
         private readonly IConnection _connection;
 
         public HeaderDictionary(IConnection connection)
@@ -25,10 +25,7 @@ namespace Microsoft.AspNetCore.SignalR.Client
             return _dictionary.ContainsKey(key);
         }
 
-        public ICollection<string> Keys
-        {
-            get { return _dictionary.Keys; }
-        }
+        public ICollection<string> Keys => _dictionary.Keys;
 
         public bool Remove(string key)
         {
@@ -40,10 +37,7 @@ namespace Microsoft.AspNetCore.SignalR.Client
             return _dictionary.TryGetValue(key, out value);
         }
 
-        public ICollection<string> Values
-        {
-            get { return _dictionary.Values; }
-        }
+        public ICollection<string> Values => _dictionary.Values;
 
         public string this[string key]
         {
@@ -77,15 +71,9 @@ namespace Microsoft.AspNetCore.SignalR.Client
             _dictionary.CopyTo(array, arrayIndex);
         }
 
-        public int Count
-        {
-            get { return _dictionary.Count; }
-        }
+        public int Count => _dictionary.Count;
 
-        public bool IsReadOnly
-        {
-            get { return _connection.State != ConnectionState.Disconnected || _dictionary.IsReadOnly; }
-        }
+        public bool IsReadOnly => _connection.State != ConnectionState.Disconnected || _dictionary.IsReadOnly;
 
         public bool Remove(KeyValuePair<string, string> item)
         {

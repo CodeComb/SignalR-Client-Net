@@ -16,10 +16,7 @@ namespace Microsoft.AspNetCore.SignalR.Client.Hubs
 
         internal void OnReceived(IList<JToken> data)
         {
-            if (Received != null)
-            {
-                Received(data);
-            }
+            Received?.Invoke(data);
         }
     }
 }

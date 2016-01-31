@@ -32,7 +32,7 @@ namespace Microsoft.AspNetCore.SignalR.Client.Http
         {
             if (headers == null)
             {
-                throw new ArgumentNullException("headers");
+                throw new ArgumentNullException(nameof(headers));
             }
 
             if (UserAgent != null)
@@ -45,7 +45,7 @@ namespace Microsoft.AspNetCore.SignalR.Client.Http
                 _httpRequestMessage.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue(Accept));
             }
 
-            foreach (KeyValuePair<string, string> headerEntry in headers)
+            foreach (var headerEntry in headers)
             {
                 _httpRequestMessage.Headers.Add(headerEntry.Key, headerEntry.Value);
             }

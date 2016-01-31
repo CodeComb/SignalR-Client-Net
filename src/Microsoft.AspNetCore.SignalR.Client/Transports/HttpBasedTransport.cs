@@ -20,7 +20,7 @@ namespace Microsoft.AspNetCore.SignalR.Client.Transports
         {
             if (connection == null)
             {
-                throw new ArgumentNullException("connection");
+                throw new ArgumentNullException(nameof(connection));
             }
 
             string url = UrlBuilder.BuildSend(connection, Name, connectionData);
@@ -29,7 +29,7 @@ namespace Microsoft.AspNetCore.SignalR.Client.Transports
 
             return TaskAsyncHelper.Then(TaskAsyncHelper.Then(HttpClient.Post(url, connection.PrepareRequest, postData, isLongRunning: false), response => response.ReadAsString()), raw =>
                 {
-                    if (!String.IsNullOrEmpty(raw))
+                    if (!string.IsNullOrEmpty(raw))
                     {
                         connection.Trace(TraceLevels.Messages, "OnMessage({0})", raw);
 

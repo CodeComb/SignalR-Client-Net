@@ -1,4 +1,7 @@
-﻿using System;
+﻿// Copyright (c) .NET Foundation. All rights reserved.
+// Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
+
+using System;
 
 namespace SignalRSample.Client
 {
@@ -9,7 +12,7 @@ namespace SignalRSample.Client
             var textWriter = Console.Out;
             var client = new Client(textWriter);
 
-            client.RunAsync("http://localhost:5000/").Wait();
+            client.RunAsync("http://localhost:5001/").Wait();
 
             Console.ReadKey();
         }

@@ -17,12 +17,12 @@ namespace Microsoft.AspNetCore.SignalR.Client.Transports
         {
             if (httpClient == null)
             {
-                throw new ArgumentNullException("httpClient");
+                throw new ArgumentNullException(nameof(httpClient));
             }
 
             if (connection == null)
             {
-                throw new ArgumentNullException("connection");
+                throw new ArgumentNullException(nameof(connection));
             }
 
             var negotiateUrl = UrlBuilder.BuildNegotiate(connection, connectionData);
@@ -31,9 +31,9 @@ namespace Microsoft.AspNetCore.SignalR.Client.Transports
 
             return TaskAsyncHelper.Then(TaskAsyncHelper.Then(httpClient.Get(negotiateUrl, connection.PrepareRequest, isLongRunning: false), response => response.ReadAsString()), raw =>
                             {
-                                if (String.IsNullOrEmpty(raw))
+                                if (string.IsNullOrEmpty(raw))
                                 {
-                                    throw new InvalidOperationException(String.Format(CultureInfo.CurrentCulture, Resources.Error_ServerNegotiationFailed));
+                                    throw new InvalidOperationException(string.Format(CultureInfo.CurrentCulture, Resources.Error_ServerNegotiationFailed));
                                 }
 
                                 return JsonConvert.DeserializeObject<NegotiationResponse>(raw);
@@ -45,12 +45,12 @@ namespace Microsoft.AspNetCore.SignalR.Client.Transports
         {
             if (httpClient == null)
             {
-                throw new ArgumentNullException("httpClient");
+                throw new ArgumentNullException(nameof(httpClient));
             }
 
             if (connection == null)
             {
-                throw new ArgumentNullException("connection");
+                throw new ArgumentNullException(nameof(connection));
             }
 
             var startUrl = UrlBuilder.BuildStart(connection, transport, connectionData);
@@ -65,14 +65,14 @@ namespace Microsoft.AspNetCore.SignalR.Client.Transports
         {
             if (connection == null)
             {
-                throw new ArgumentNullException("connection");
+                throw new ArgumentNullException(nameof(connection));
             }
 
             // Ensure that we have not exceeded the reconnect window
             if (DateTime.UtcNow - connection.LastActiveAt >= connection.ReconnectWindow)
             {
                 connection.Trace(TraceLevels.Events, "There has not been an active server connection for an extended period of time. Stopping connection.");
-                connection.Stop(new TimeoutException(String.Format(CultureInfo.CurrentCulture, Resources.Error_ReconnectWindowTimeout,
+                connection.Stop(new TimeoutException(string.Format(CultureInfo.CurrentCulture, Resources.Error_ReconnectWindowTimeout,
                     connection.LastActiveAt, connection.ReconnectWindow)));
 
                 return false;

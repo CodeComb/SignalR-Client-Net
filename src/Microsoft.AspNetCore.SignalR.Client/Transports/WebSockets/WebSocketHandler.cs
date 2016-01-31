@@ -18,7 +18,7 @@ namespace Microsoft.AspNetCore.SignalR.Client.Transports.WebSockets
         private static readonly TimeSpan _closeTimeout = TimeSpan.FromMilliseconds(250);
 
         // 4KB default fragment size (we expect most messages to be very short)
-        private const int _receiveLoopBufferSize = 4 * 1024;
+        private const int ReceiveLoopBufferSize = 4 * 1024;
         private readonly int? _maxIncomingMessageSize;
 
         // Queue for sending messages
@@ -111,13 +111,7 @@ namespace Microsoft.AspNetCore.SignalR.Client.Transports.WebSockets
             closeContext);
         }
 
-        public int? MaxIncomingMessageSize
-        {
-            get
-            {
-                return _maxIncomingMessageSize;
-            }
-        }
+        public int? MaxIncomingMessageSize => _maxIncomingMessageSize;
 
         internal WebSocket WebSocket { get; set; }
 
@@ -127,10 +121,10 @@ namespace Microsoft.AspNetCore.SignalR.Client.Transports.WebSockets
         {
             if (webSocket == null)
             {
-                throw new ArgumentNullException("webSocket");
+                throw new ArgumentNullException(nameof(webSocket));
             }
 
-            var receiveContext = new ReceiveContext(webSocket, disconnectToken, MaxIncomingMessageSize, _receiveLoopBufferSize);
+            var receiveContext = new ReceiveContext(webSocket, disconnectToken, MaxIncomingMessageSize, ReceiveLoopBufferSize);
 
             return ProcessWebSocketRequestAsync(webSocket, disconnectToken, state =>
             {

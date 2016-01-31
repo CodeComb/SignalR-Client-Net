@@ -44,23 +44,14 @@ namespace Microsoft.AspNetCore.SignalR.Client.Transports
         /// <summary>
         /// Indicates whether or not the transport supports keep alive
         /// </summary>
-        public override bool SupportsKeepAlive
-        {
-            get
-            {
-                return false;
-            }
-        }
+        public override bool SupportsKeepAlive => false;
 
         protected override void OnStart(IConnection connection, string connectionData, CancellationToken disconnectToken)
         {
             _disconnectRegistration = disconnectToken.SafeRegister(state =>
             {
                 // _reconnectInvoker can be null if disconnectToken is tripped before the polling loop is started
-                if (_reconnectInvoker != null)
-                {
-                    _reconnectInvoker.Invoke();
-                }
+                _reconnectInvoker?.Invoke();
 
                 StopPolling();
             }, null);
@@ -160,11 +151,8 @@ namespace Microsoft.AspNetCore.SignalR.Client.Transports
                     // If someone calls Abort() later, have it no-op
                     AbortHandler.CompleteAbort();
 
-                    if (_currentRequest != null)
-                    {
-                        // This will no-op if the request is already finished
-                        _currentRequest.Abort();
-                    }
+                    // This will no-op if the request is already finished
+                    _currentRequest?.Abort();
                 }
             }
         }
@@ -281,10 +269,7 @@ namespace Microsoft.AspNetCore.SignalR.Client.Transports
             {
                 lock (_stopLock)
                 {
-                    if (_currentRequest != null)
-                    {
-                        _currentRequest.Abort();
-                    }
+                    _currentRequest?.Abort();
                 }
             }
         }

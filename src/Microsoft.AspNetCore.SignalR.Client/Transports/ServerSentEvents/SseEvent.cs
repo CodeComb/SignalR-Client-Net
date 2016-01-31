@@ -27,7 +27,7 @@ namespace Microsoft.AspNetCore.SignalR.Client.Transports.ServerSentEvents
 
             if (line == null)
             {
-                throw new ArgumentNullException("line");
+                throw new ArgumentNullException(nameof(line));
             }
 
             if (line.StartsWith("data:", StringComparison.OrdinalIgnoreCase))

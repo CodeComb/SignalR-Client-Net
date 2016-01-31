@@ -5,7 +5,7 @@ using System;
 
 namespace Microsoft.AspNetCore.SignalR.Client.Infrastructure
 {
-#if NET45
+#if NET451
     [Serializable]
 #endif
     public class StartException : Exception
@@ -14,7 +14,7 @@ namespace Microsoft.AspNetCore.SignalR.Client.Infrastructure
         public StartException(string message) : base(message) { }
         public StartException(string message, Exception inner) : base(message, inner) { }
 
-#if NET45
+#if NET451
         protected StartException(
           System.Runtime.Serialization.SerializationInfo info,
           System.Runtime.Serialization.StreamingContext context)

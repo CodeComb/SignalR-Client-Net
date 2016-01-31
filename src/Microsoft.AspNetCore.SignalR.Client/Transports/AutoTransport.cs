@@ -28,9 +28,7 @@ namespace Microsoft.AspNetCore.SignalR.Client.Transports
 
             _transports = new List<IClientTransport>()
             {
-#if NET45 || WINDOWS_UWP || WINDOWS_APP
                 new WebSocketTransport(httpClient),
-#endif
                 new ServerSentEventsTransport(httpClient),
                 new LongPollingTransport(httpClient)
             };
@@ -69,7 +67,7 @@ namespace Microsoft.AspNetCore.SignalR.Client.Transports
         public Task<NegotiationResponse> Negotiate(IConnection connection, string connectionData)
         {
             var task = GetNegotiateResponse(connection, connectionData);
-#if NET45
+
             return task.Then(response =>
             {
                 if (!response.TryWebSockets)
@@ -79,9 +77,6 @@ namespace Microsoft.AspNetCore.SignalR.Client.Transports
 
                 return response;
             });
-#else
-            return task;
-#endif
         }
 
         public virtual Task<NegotiationResponse> GetNegotiateResponse(IConnection connection, string connectionData)

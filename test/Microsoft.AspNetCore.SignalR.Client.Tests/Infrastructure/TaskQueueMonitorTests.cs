@@ -13,7 +13,7 @@ namespace Microsoft.AspNetCore.SignalR.Client.Tests.Infrastructure
     public class TaskQueueMonitorTests
     {
         private static readonly string _expectedErrorMessage =
-            String.Format(CultureInfo.CurrentCulture,
+            string.Format(CultureInfo.CurrentCulture,
                           Resources.Error_PossibleDeadlockDetected,
                           Timeout.InfiniteTimeSpan.TotalSeconds);
 

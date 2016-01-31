@@ -44,16 +44,13 @@ namespace Microsoft.AspNetCore.SignalR.Client.Hubs
             }
         }
 
-        public JsonSerializer JsonSerializer
-        {
-            get { return _connection.JsonSerializer; }
-        }
+        public JsonSerializer JsonSerializer => _connection.JsonSerializer;
 
         public Subscription Subscribe(string eventName)
         {
             if (eventName == null)
             {
-                throw new ArgumentNullException("eventName");
+                throw new ArgumentNullException(nameof(eventName));
             }
 
             Subscription subscription;
@@ -86,12 +83,12 @@ namespace Microsoft.AspNetCore.SignalR.Client.Hubs
         {
             if (method == null)
             {
-                throw new ArgumentNullException("method");
+                throw new ArgumentNullException(nameof(method));
             }
 
             if (args == null)
             {
-                throw new ArgumentNullException("args");
+                throw new ArgumentNullException(nameof(args));
             }
 
             var tokenifiedArguments = new JToken[args.Length];

@@ -18,13 +18,7 @@ namespace Microsoft.AspNetCore.SignalR.Client.Transports.ServerSentEvents
             _lineBuilder = new StringBuilder();
         }
 
-        public bool HasChunks
-        {
-            get
-            {
-                return _offset < _buffer.Length;
-            }
-        }
+        public bool HasChunks => _offset < _buffer.Length;
 
         public void Add(byte[] buffer, int length)
         {
@@ -39,13 +33,13 @@ namespace Microsoft.AspNetCore.SignalR.Client.Transports.ServerSentEvents
         public string ReadLine()
         {
             // Lock while reading so that we can make safe assuptions about the buffer indicies
-            for (int i = _offset; i < _buffer.Length; i++, _offset++)
+            for (var i = _offset; i < _buffer.Length; i++, _offset++)
             {
                 if (_buffer[i] == '\n')
                 {
                     _buffer.Remove(0, _offset + 1);
 
-                    string line = _lineBuilder.ToString().Trim();
+                    var line = _lineBuilder.ToString().Trim();
                     _lineBuilder.Clear();
 
                     _offset = 0;

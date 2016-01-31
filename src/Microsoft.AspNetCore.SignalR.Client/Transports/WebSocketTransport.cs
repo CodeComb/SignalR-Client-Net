@@ -49,10 +49,7 @@ namespace Microsoft.AspNetCore.SignalR.Client.Transports
         /// <summary>
         /// Indicates whether or not the transport supports keep alive
         /// </summary>
-        public override bool SupportsKeepAlive
-        {
-            get { return true; }
-        }
+        public override bool SupportsKeepAlive => true;
 
         protected override void OnStart(IConnection connection, string connectionData, CancellationToken disconnectToken)
         {
@@ -110,7 +107,7 @@ namespace Microsoft.AspNetCore.SignalR.Client.Transports
         {
             if (connection == null)
             {
-                throw new ArgumentNullException("connection");
+                throw new ArgumentNullException(nameof(connection));
             }
 
             // If we don't throw here when the WebSocket isn't open, WebSocketHander.SendAsync will noop.
@@ -201,10 +198,7 @@ namespace Microsoft.AspNetCore.SignalR.Client.Transports
         {
             _connection.Trace(TraceLevels.Events, "WS: LostConnection");
 
-            if (_webSocketTokenSource != null)
-            {
-                _webSocketTokenSource.Cancel();
-            }
+            _webSocketTokenSource?.Cancel();
         }
 
         protected override void Dispose(bool disposing)
@@ -217,21 +211,12 @@ namespace Microsoft.AspNetCore.SignalR.Client.Transports
                     return;
                 }
 
-                if (_webSocketTokenSource != null)
-                {
-                    // Gracefully close the websocket message loop
-                    _webSocketTokenSource.Cancel();
-                }
+                // Gracefully close the websocket message loop
+                _webSocketTokenSource?.Cancel();
 
-                if (_webSocket != null)
-                {
-                    _webSocket.Dispose();
-                }
+                _webSocket?.Dispose();
 
-                if (_webSocketTokenSource != null)
-                {
-                    _webSocketTokenSource.Dispose();
-                }
+                _webSocketTokenSource?.Dispose();
             }
 
             base.Dispose(disposing);

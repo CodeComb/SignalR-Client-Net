@@ -65,10 +65,7 @@ namespace Microsoft.AspNetCore.SignalR.Client.Transports.ServerSentEvents
 
         private void OnMessage(SseEvent sseEvent)
         {
-            if (Message != null)
-            {
-                Message(sseEvent);
-            }
+            Message?.Invoke(sseEvent);
         }
     }
 }
