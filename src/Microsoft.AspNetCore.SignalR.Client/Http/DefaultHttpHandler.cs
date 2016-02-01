@@ -7,7 +7,7 @@ using System.Security.Cryptography.X509Certificates;
 
 namespace Microsoft.AspNetCore.SignalR.Client.Http
 {
-#if NET451
+#if !DOTNET5_4
     public class DefaultHttpHandler : WebRequestHandler
 #else
     public class DefaultHttpHandler : HttpClientHandler
