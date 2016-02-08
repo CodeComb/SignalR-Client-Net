@@ -3,7 +3,8 @@
     "emitEntryPoint": true
   },
   "dependencies": {
-    "Microsoft.AspNetCore.SignalR.Client": "0.1.0-*"
+    "Microsoft.AspNetCore.SignalR.Client": "0.1.0-*",
+    "Microsoft.NETCore.Platforms": "1.0.1-*"
   },
   "commands": {
     "run": "SignalRSample.Client"
@@ -17,7 +18,8 @@
         "System.Console": "4.0.0-*",
         "System.Linq": "4.0.1-*",
         "System.Threading": "4.0.11-*"
-      }
+      },
+      "imports": "portable-net45+win8"
     }
   }
 }

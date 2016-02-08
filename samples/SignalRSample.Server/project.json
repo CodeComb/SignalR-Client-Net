@@ -8,13 +8,16 @@
     "Microsoft.AspNetCore.SignalR.Server": "0.1.0-*",
     "Microsoft.AspNetCore.StaticFiles": "1.0.0-*",
     "Microsoft.AspNetCore.WebSockets.Server": "0.1.0-*",
-    "Microsoft.Extensions.Logging.Console": "1.0.0-*"
+    "Microsoft.Extensions.Logging.Console": "1.0.0-*",
+    "Microsoft.NETCore.Platforms": "1.0.1-*"
   },
   "commands": {
     "web": "SignalRSample.Server"
   },
   "frameworks": {
     "dnx451": { },
-    "dnxcore50": { }
+    "dnxcore50": {
+      "imports": "portable-net45+win8"
+    }
   }
 }
