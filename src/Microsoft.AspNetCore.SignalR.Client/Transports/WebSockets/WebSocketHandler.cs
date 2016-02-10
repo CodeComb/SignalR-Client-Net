@@ -193,7 +193,41 @@ namespace Microsoft.AspNetCore.SignalR.Client.Transports.WebSockets
                 }
             }
 
-            OnClose();
+            #region For client
+            try
+            {
+                var webSocketState = GetWebSocketState(WebSocket);
+                if (webSocketState == WebSocketState.Closed ||
+                    webSocketState == WebSocketState.Aborted)
+                {
+                    // No-op if the socket is already closed or aborted
+                }
+                else
+                {
+                    // Initiate the WebSocket closing handshake. Only the client should ever do this.
+                    await WebSocket.CloseAsync(WebSocketCloseStatus.NormalClosure, "", CancellationToken.None).PreserveCulture();
+                }
+            }
+            finally
+            {
+                WebSocket.Dispose();
+                #endregion
+                OnClose();
+                #region For client
+            }
+            #endregion
+        }
+
+        private static WebSocketState GetWebSocketState(WebSocket webSocket)
+        {
+            try
+            {
+                return webSocket.State;
+            }
+            catch (ObjectDisposedException)
+            {
+                return WebSocketState.Closed;
+            }
         }
 
         // returns true if this is a fatal exception (e.g. OnError should be called)

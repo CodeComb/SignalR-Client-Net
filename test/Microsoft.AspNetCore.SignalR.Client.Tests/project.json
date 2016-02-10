@@ -12,14 +12,8 @@
   "frameworks": {
     "dnx451": {
       "dependencies": {
-        "Moq": "4.2.1510.2205"
+        "Moq": "4.2.1312.1622"
       }
-    },
-    "dnxcore50": {
-      "dependencies": {
-        "moq.netcore": "4.4.0-beta8"
-      },
-      "imports": "portable-net451+win8"
     }
   },
   "commands": {
