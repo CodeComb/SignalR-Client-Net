@@ -7,24 +7,21 @@
     "Microsoft.AspNetCore.Testing": "1.0.0-*",
     "Microsoft.AspNetCore.SignalR.Client": "0.1.0-*",
     "Microsoft.NETCore.Platforms": "1.0.1-*",
-    "xunit": "2.1.0"
+    "xunit.runner.aspnet": "2.0.0-aspnet-*"
   },
   "frameworks": {
     "dnx451": {
       "dependencies": {
-        "Moq": "4.2.1510.2205",
-        "xunit.runner.console": "2.1.0"
+        "Moq": "4.2.1510.2205"
       }
     },
     "dnxcore50": {
       "dependencies": {
-        "moq.netcore": "4.4.0-beta8",
-        "xunit.runner.aspnet": "2.0.0-aspnet-*"
+        "moq.netcore": "4.4.0-beta8"
       },
       "imports": "portable-net451+win8"
     }
   },
-  "testRunner": "xunit",
   "commands": {
     "test": "xunit.runner.aspnet"
   }
