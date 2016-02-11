@@ -118,6 +118,7 @@ namespace Microsoft.AspNetCore.SignalR.Client.Tests
             Assert.IsType<OperationCanceledException>(unwrappedException);
         }
 
+#if !MOQ_NETCORE
         [Fact]
         public void CancelledTaskHandledinLongPollingLoop()
         {
@@ -177,6 +178,7 @@ namespace Microsoft.AspNetCore.SignalR.Client.Tests
 
             Assert.False(mre.IsSet);
         }
+#endif
 
         [Fact]
         public void SendCatchesOnReceivedExceptions()
@@ -240,6 +242,7 @@ namespace Microsoft.AspNetCore.SignalR.Client.Tests
             }
         }
 
+#if !MOQ_NETCORE
         [Theory]
         [InlineData(WebSocketState.Aborted)]
         [InlineData(WebSocketState.Closed)]
@@ -267,6 +270,7 @@ namespace Microsoft.AspNetCore.SignalR.Client.Tests
             mockConnection.VerifyAll();
             mockWebSocket.VerifyAll();
         }
+#endif
 
         [Fact]
         public void AllTransportsButLongPollingSupportKeepAlives()

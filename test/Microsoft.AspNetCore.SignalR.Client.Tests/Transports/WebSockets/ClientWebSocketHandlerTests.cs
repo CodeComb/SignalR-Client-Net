@@ -15,6 +15,7 @@ namespace Microsoft.AspNetCore.SignalR.Client.Tests.Transports.WebSockets
 {
     public class ClientWebSocketHandlerTest
     {
+#if !MOQ_NETCORE
         [Fact]
         public void OnOpenCallsIntoWebSocketTransportOnMessage()
         {
@@ -61,7 +62,7 @@ namespace Microsoft.AspNetCore.SignalR.Client.Tests.Transports.WebSockets
 
             mockWebSocketTransport.Verify(p => p.OnError(exception), Times.Once());
         }
-
+#endif
         [Fact]
         public async Task WebSocketHandlerClosesIfWebSocketStateIsCloseSentAfterClosing()
         {

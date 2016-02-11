@@ -43,6 +43,7 @@ namespace Microsoft.AspNetCore.SignalR.Client.Tests.Transports
             connection.VerifyAll();
         }
 
+#if !MOQ_NETCORE
         [Fact]
         public async Task NegotiateInvokesGetNegotiationResponseOnTransportHelperAsync()
         {
@@ -204,6 +205,7 @@ namespace Microsoft.AspNetCore.SignalR.Client.Tests.Transports
 
             Assert.Contains(exceptionMessage, traceStringBuilder.ToString());
         }
+#endif
 
         [Fact]
         public void CannotNegotiateUsingFinishedTransport()

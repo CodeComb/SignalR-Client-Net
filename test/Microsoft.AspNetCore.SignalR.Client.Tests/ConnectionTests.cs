@@ -393,6 +393,7 @@ namespace Microsoft.AspNetCore.SignalR.Client.Tests
             }
         }
 
+#if !MOQ_NETCORE
         [Fact]
         public void OnReconnectingExplicitImplementationCallsIntoProtectedOnReconnecting()
         {
@@ -436,5 +437,6 @@ namespace Microsoft.AspNetCore.SignalR.Client.Tests
 
             mockTransport.Verify(t => t.Dispose(), Times.Once());
         }
+#endif
     }
 }

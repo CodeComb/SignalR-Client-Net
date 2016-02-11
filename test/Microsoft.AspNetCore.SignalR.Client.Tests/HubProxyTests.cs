@@ -166,6 +166,7 @@ namespace Microsoft.AspNetCore.SignalR.Client.Tests
             Assert.Equal(connection._callbacks.Count, 0);
         }
 
+#if !MOQ_NETCORE
         [Fact]
         public void HubCallbackClearedOnFailedInvocation()
         {
@@ -185,6 +186,7 @@ namespace Microsoft.AspNetCore.SignalR.Client.Tests
 
             Assert.Equal(connection.Object._callbacks.Count, 0);
         }
+#endif
 
         public void FailedHubCallbackDueToReconnectFollowedByInvoke()
         {
