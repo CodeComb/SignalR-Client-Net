@@ -25,7 +25,7 @@
         "System.Collections": "4.0.11-*",
         "System.Diagnostics.Tools": "4.0.1-*",
         "System.Diagnostics.TraceSource": "4.0.0-*",
-        "System.Linq": "4.0.2-*",
+        "System.Linq": "4.1.0-*",
         "System.IO": "4.1.0-*",
         "System.Net.Http": "4.0.1-*",
         "System.Net.Requests": "4.0.11-*",
