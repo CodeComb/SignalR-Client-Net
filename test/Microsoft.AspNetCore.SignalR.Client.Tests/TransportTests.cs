@@ -207,7 +207,7 @@ namespace Microsoft.AspNetCore.SignalR.Client.Tests
 
                     connection.Setup(c => c.Trace(TraceLevels.Messages, It.IsAny<string>(), It.IsAny<object[]>()));
                     connection.SetupGet(c => c.Url).Returns("");
-#if DNX451
+#if NET451
                     connection.SetupGet(c => c.Protocol).Returns(new Version());
 # elif DNXCORE50
                     connection.SetupGet(c => c.Protocol).Returns(new Version(major: 0, minor: 0));
